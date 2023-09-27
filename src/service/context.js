@@ -7,21 +7,14 @@ const openWeatherMapKey = "8408b16d6947bbaf9cd85740ce3fba64";
 
 export const WeatherProvider = ({ children }) => {
     const [weatherData, setWeatherData] = useState(null);
-    const [coordenadas, setCoordenadas] = useState(null);
+    const [coordenadas, setCoordenadas] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const getLocationCity = async () => {
         try {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    async (position) => {
-                        const { latitude, longitude } = position.coords;
-                        console.log(coordenadas);
-                        setCoordenadas({ latitude, longitude });
-                    },
-                    //obtencion de los datos del clima 
-                    getWeatherLocation(openWeatherMapKey, coordenadas)
-                );
+                navigator.geolocation.getCurrentPosition(obtainCords);
+                
             } else {
                 console.error("Geolocaclizacion no soportada por el navegador");
             }
@@ -29,6 +22,17 @@ export const WeatherProvider = ({ children }) => {
             console.error("No se pueden obtener los datos de geolocalizacion");
         }
 
+    }
+
+    const obtainCords = async (geoLocationPosition) => {
+        console.log(geoLocationPosition.coords); //Lo que imprime:   GeolocationCoordinates {latitude: -33.6820557,longitude: -65.4228588,altitude: null,accuracy: 16.754,altitudeAccuracy: null,heading: null,speed: null}
+        const coords = geoLocationPosition.coords;
+        console.log(coords); //Esto imprime lo mismo
+        const { latitude, longitude } = coords;
+        console.log({ latitude, longitude }); //Esto tambien
+        setCoordenadas({ latitude, longitude });
+        console.log(coordenadas); //Esto imprime null, aunque se setee con setCoordenadas
+        getWeatherLocation(openWeatherMapKey, {latitude, longitude});
     }
 
     useEffect(() => {
@@ -73,3 +77,10 @@ export const useWeather = () => {
     return context;
 };
 
+// async (position) => {
+                    //     const { latitude, longitude } = position.coords;
+                    //     console.log(coordenadas);
+                    //     setCoordenadas({ latitude, longitude });
+                    // },
+                    // //obtencion de los datos del clima 
+                    // getWeatherLocation(openWeatherMapKey, coordenadas)
