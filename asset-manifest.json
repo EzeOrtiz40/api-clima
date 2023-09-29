@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/api-clima/static/css/main.073c9b0a.css",
-    "main.js": "/api-clima/static/js/main.ff150bb5.js",
+    "main.css": "/api-clima/static/css/main.196f8335.css",
+    "main.js": "/api-clima/static/js/main.515635b0.js",
+    "static/media/DJI_0707-en-BAJA.png": "/api-clima/static/media/DJI_0707-en-BAJA.7e078d52bb7452e1e212.png",
     "index.html": "/api-clima/index.html",
-    "main.073c9b0a.css.map": "/api-clima/static/css/main.073c9b0a.css.map",
-    "main.ff150bb5.js.map": "/api-clima/static/js/main.ff150bb5.js.map"
+    "main.196f8335.css.map": "/api-clima/static/css/main.196f8335.css.map",
+    "main.515635b0.js.map": "/api-clima/static/js/main.515635b0.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.ff150bb5.js"
+    "static/css/main.196f8335.css",
+    "static/js/main.515635b0.js"
   ]
 }
