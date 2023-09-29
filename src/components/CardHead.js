@@ -8,21 +8,20 @@ function CardHead() {
   const { weatherData, loading } = useWeather();
 
   if (loading) {
-    return <p>Cargando datos meteorologicos..</p>
+    return <p>Cargando datos meteorilogicos </p>
   }
 
+  const icon = weatherData.weather[0].icon;
+  const iconURL = `${process.env.PUBLIC_URL}/img/${icon}.png`;
+  const wind = weatherData.wind.speed;
+  const pais = weatherData.sys.country;
+
+
   return (
-    <div className="card-head">
-      {weatherData && (
-        <>
-          <h2>Ciudad: {weatherData.name}</h2>
-          <p>Temperatura: {weatherData.main.temp}°C</p>
-          <p>Estado: {weatherData.weather[0].main}</p>
-        </>
-      )}
-    </div>
+    <>
+      <h3>{weatherData.name}, {pais}</h3>
+    </>
   );
 }
 
 export default CardHead;
-
